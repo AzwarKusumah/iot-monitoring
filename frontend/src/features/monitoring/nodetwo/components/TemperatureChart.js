@@ -52,7 +52,7 @@ function TemperatureChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch('http://localhost:3000/mqtt-data');;
+        const result = await fetch('http://192.168.173.25:3000/mqtt-data');;
         const datares = await result.json();
         const node26 = datares.node26
         const temperature = node26.temperature

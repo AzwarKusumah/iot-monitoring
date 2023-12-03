@@ -4,17 +4,24 @@ const mongoose = require('mongoose');
 
 // Fungsi untuk mengolah pesan MQTT
 function handleMqttData(topic, message, receivedData) {
-  const node = topic.split('/')[1]; // Mendapatkan nama node dari topik
+  const node = topic.split('/')[0]; // Mendapatkan nama node dari topik
   switch (node) {
     case 'node25':
       receivedData.temperatureNode25 = topic.includes('temperature') ? message.toString() : receivedData.temperatureNode25;
       receivedData.humidityNode25 = topic.includes('humidity') ? message.toString() : receivedData.humidityNode25;
       receivedData.pressureNode25 = topic.includes('pressure') ? message.toString() : receivedData.pressureNode25;
+      receivedData.altitudeNode25 = topic.includes('altitude') ? message.toString() : receivedData.altitudeNode25;
+      receivedData.gasmqoneNode25 = topic.includes('gas') ? message.toString() : receivedData.gasmqoneNode25;
+      receivedData.gasmqtwoNode25 = topic.includes('gas') ? message.toString() : receivedData.gasmqtwoNode25;
+      receivedData.statusNode25 = topic.includes('status') ? message.toString() : receivedData.statusNode25;
       break;
     case 'node26':
       receivedData.temperatureNode26 = topic.includes('temperature') ? message.toString() : receivedData.temperatureNode26;
       receivedData.humidityNode26 = topic.includes('humidity') ? message.toString() : receivedData.humidityNode26;
       receivedData.pressureNode26 = topic.includes('pressure') ? message.toString() : receivedData.pressureNode26;
+      receivedData.altitudeNode26 = topic.includes('altitude') ? message.toString() : receivedData.altitudeNode26;
+      receivedData.dustNode26 = topic.includes('dustdensity') ? message.toString() : receivedData.dustNode26;
+      receivedData.statusNode26 = topic.includes('status') ? message.toString() : receivedData.statusNode26;
       break;
     case 'node27':
       receivedData.temperatureNode27 = topic.includes('temperature') ? message.toString() : receivedData.temperatureNode27;
@@ -31,11 +38,18 @@ function saveDataToMongoDB(receivedData) {
       temperature: receivedData.temperatureNode25,
       humidity: receivedData.humidityNode25,
       pressure: receivedData.pressureNode25,
+      altitude: receivedData.altitudeNode25,
+      gas_mq135: receivedData.gasmqoneNode25,
+      gas_mq2: receivedData.gasmqtwoNode25,
+      status: receivedData.statusNode25,
     },
     node26: {
       temperature: receivedData.temperatureNode26,
       humidity: receivedData.humidityNode26,
       pressure: receivedData.pressureNode26,
+      altitude: receivedData.altitudeNode26,
+      dustdensity: receivedData.dustNode26,
+      status: receivedData.statusNode26,
     },
     node27: {
       temperature: receivedData.temperatureNode27,
@@ -61,6 +75,11 @@ function saveDataToMongoDB(receivedData) {
     receivedData[`temperature${node}`] = null;
     receivedData[`humidity${node}`] = null;
     receivedData[`pressure${node}`] = null;
+    receivedData[`altitude${node}`] = null;
+    receivedData[`dust${node}`] = null;
+    receivedData[`gasmqone${node}`] = null;
+    receivedData[`gasmqtwo${node}`] = null;
+    receivedData[`status${node}`] = null;
   }
 }
 
@@ -70,9 +89,18 @@ function startMqttDataProcessing() {
     temperatureNode25: null,
     humidityNode25: null,
     pressureNode25: null,
+    altitudeNode25: null,
+    gasmqoneNode25: null,
+    gasmqtwoNode25: null,
+    statusNode25: null,
+
     temperatureNode26: null,
     humidityNode26: null,
     pressureNode26: null,
+    altitudeNode26: null,
+    dustNode26: null,
+    statusNode26: null,
+
     temperatureNode27: null,
     humidityNode27: null,
     pressureNode27: null,

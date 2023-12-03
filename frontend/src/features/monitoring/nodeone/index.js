@@ -3,17 +3,19 @@ import GaugeComponent from 'react-gauge-component'
 import TemperatureChart from './components/TemperatureChart'
 import HumidityChart from './components/HumidityChart'
 import PressureChart from './components/PressureChart'
+import GasMetanaChart from './components/GasMetanaChart';
+import GasEtanolChart from './components/GasEtanolChart';
+import AltitudeChart from './components/AltitudeChart';
 
 
 function NodeOne() {
 
   const [data, setData] = useState([]);
-  console.log(data);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch('http://localhost:3000/mqtt-data');;
+        const result = await fetch('http://192.168.173.25:3000/mqtt-data');;
         const datares = await result.json();
         const node25 = datares.node25
         setData(node25);
@@ -149,11 +151,11 @@ function NodeOne() {
                   type: 'outer',
                   valueConfig: { formatTextValue: value => value + 'Rh', fontSize: 10 },
                   ticks: [
-                    { value: `${data.humidityDHT22}` },
+                    { value: `${data.humidity}` },
                   ],
                 }
               }}
-              value={data.humidityDHT22}
+              value={data.humidity}
             />
           </div>
         </div>
@@ -170,7 +172,7 @@ function NodeOne() {
               }}
               labels={{
                 valueLabel: {
-                  formatTextValue: value => value + 'PSi'
+                  formatTextValue: value => value + 'Hpa'
                 },
                 tickLabels: {
                   type: "outer",
@@ -183,7 +185,7 @@ function NodeOne() {
                   ],
                 }
               }}
-              value={data.pressureBME280}
+              value={data.pressure}
               maxValue={3000}
             />
           </div>
@@ -193,6 +195,9 @@ function NodeOne() {
         <TemperatureChart />
         <HumidityChart />
         <PressureChart />
+        <AltitudeChart />
+        <GasMetanaChart />
+        <GasEtanolChart />
       </div>
 
     </>

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import TitleCard from '../../../../components/Cards/TitleCard';
 import { Bar } from 'react-chartjs-2';
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
 } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -32,21 +32,21 @@ function PressureChart() {
         label: 'Pressure',
         data: [],
         borderColor: [
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
-            'rgb(153, 102, 255)',
-            'rgb(201, 203, 207)'
-          ],
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)'
+        ],
         backgroundColor: ['rgba(255, 99, 132, 0.8)',
-        'rgba(255, 159, 64, 0.8)',
-        'rgba(255, 205, 86, 0.8)',
-        'rgba(75, 192, 192, 0.8)',
-        'rgba(54, 162, 235, 0.8)',
-        'rgba(153, 102, 255, 0.8)',
-        'rgba(201, 203, 207, 0.8)']
+          'rgba(255, 159, 64, 0.8)',
+          'rgba(255, 205, 86, 0.8)',
+          'rgba(75, 192, 192, 0.8)',
+          'rgba(54, 162, 235, 0.8)',
+          'rgba(153, 102, 255, 0.8)',
+          'rgba(201, 203, 207, 0.8)']
       },
     ],
   });
@@ -54,10 +54,10 @@ function PressureChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch('http://localhost:3000/mqtt-data');;
+        const result = await fetch('http://192.168.173.25:3000/mqtt-data');;
         const datares = await result.json();
         const node26 = datares.node25
-        const humidity = node26.pressureBME280
+        const humidity = node26.pressure
         const currentTime = new Date().toLocaleTimeString();
 
         setData((prevData) => ({
@@ -83,9 +83,9 @@ function PressureChart() {
 
   return (
     <TitleCard title={"Pressure"}>
-      <Bar data={data} options={options}/>
+      <Bar data={data} options={options} />
     </TitleCard>
-    
+
   )
 }
 

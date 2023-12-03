@@ -6,7 +6,7 @@ const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
 const Page404 = lazy(() => import('../pages/protected/404'))
 const Blank = lazy(() => import('../pages/protected/Blank'))
-const Charts = lazy(() => import('../pages/protected/Charts'))
+const Analytics = lazy(() => import('../pages/protected/Analytics'))
 const Integration = lazy(() => import('../pages/protected/Integration'))
 const Team = lazy(() => import('../pages/protected/Team'))
 const NodeTwo = lazy(() => import('../pages/protected/NodeTwo'))
@@ -64,8 +64,8 @@ const routes = [
     component: Integration,
   },
   {
-    path: '/charts',
-    component: Charts,
+    path: '/analytics',
+    component: Analytics,
   },
   {
     path: '/404',

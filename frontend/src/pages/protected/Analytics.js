@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import Charts from '../../features/charts'
+import Charts from '../../features/analytics'
 import { setPageTitle } from '../../features/common/headerSlice'
 
 function InternalPage(){

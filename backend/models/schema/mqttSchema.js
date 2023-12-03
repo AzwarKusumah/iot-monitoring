@@ -6,12 +6,20 @@ const dataIotSchema = new mongoose.Schema({
     node25: {
         temperature: String,
         humidity: String,
-        pressure: String
+        pressure: String,
+        altitude: String,
+        gas_mq135: String,
+        gas_mq2: String,
+        status: String,
+
     },
     node26: {
         temperature: String,
         humidity: String,
-        pressure: String
+        pressure: String,
+        altitude: String,
+        dustdensity: String,
+        status: String,
     },
     node27: {
         temperature: String,

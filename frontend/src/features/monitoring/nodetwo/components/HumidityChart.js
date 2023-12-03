@@ -52,10 +52,10 @@ function HumidityChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch('http://localhost:3000/mqtt-data');;
+        const result = await fetch('http://192.168.173.25:3000/mqtt-data');;
         const datares = await result.json();
         const node26 = datares.node26
-        const humidity = node26.humidityDHT22
+        const humidity = node26.humidity
         const currentTime = new Date().toLocaleTimeString();
 
         setData((prevData) => ({

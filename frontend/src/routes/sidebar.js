@@ -1,5 +1,4 @@
 /** Icons are imported separatly to reduce build time */
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon'
 import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon'
 import TableCellsIcon from '@heroicons/react/24/outline/TableCellsIcon'
 import WalletIcon from '@heroicons/react/24/outline/WalletIcon'
@@ -10,6 +9,7 @@ import BoltIcon from '@heroicons/react/24/outline/BoltIcon'
 import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import ComputerDesktopIcon from '@heroicons/react/24/outline/ComputerDesktopIcon'
+import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon'
 
 const iconClasses = `h-6 w-6`
 const submenuIconClasses = `h-5 w-5`
@@ -44,8 +44,8 @@ const routes = [
     ]
   },
   {
-    path: '/app/charts', // url
-    icon: <ChartBarIcon className={iconClasses}/>, // icon component
+    path: '/app/analytics', // url
+    icon: <DocumentTextIcon className={iconClasses}/>, // icon component
     name: 'Analytics', // name that appear in Sidebar
   },
   {
